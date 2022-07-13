@@ -137,17 +137,17 @@ export const RealEstateRennovationForm = () => {
                             <DisplayField
                                 name="profitToInvestor"
                                 title="Profit"
-                                value={profitToInvestor ? displayProfitToInvestor : "TBD"}
+                                value={profitToInvestor ? displayProfitToInvestor : "$0"}
                             />
                             <DisplayField
                                 name="returnOnInvestment"
                                 title="Return"
-                                value={returnOnInvestment ? displayReturnOnInvestment : "TBD"}
+                                value={returnOnInvestment ? displayReturnOnInvestment : "0%"}
                             />
                             <DisplayField
                                 name="annualizedReturn"
                                 title="Return (Annualized)"
-                                value={annualizedReturn ? displayAnnualizedReturn : "TBD"}
+                                value={annualizedReturn ? displayAnnualizedReturn : "0%"}
                             />
 
                             <h3>Additional Information</h3>
