@@ -110,7 +110,7 @@ export const RealEstateRennovationForm = () => {
                             />
                             <LabeledField name="investorProfitShare" title="Investor Profit Share" />
 
-                            <h3>Investor Benefits</h3>
+                            <h3>Investor Returns</h3>
                             <DisplayField
                                 name="profitToInvestor"
                                 title="Profit"
