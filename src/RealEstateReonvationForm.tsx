@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 
 class RealEstateRenovationValues {
     closingCost: string = ''
+    investorProfitShare: string = ''
     investmentDuration: string = ''
     projectedSalePrice: string = ''
     purchasePrice: string = ''
@@ -14,13 +15,14 @@ class RealEstateRenovationValues {
 // which keys are symmetrical to our values/initialValues
 const validate = (values: RealEstateRenovationValues) => {
     const errors: RealEstateRenovationValues = {
-        region: '',
-        subRegion: '',
-        purchasePrice: '',
-        rennovationCost: '',
-        projectedSalePrice: '',
-        investmentDuration: '',
         closingCost: '',
+        investorProfitShare: '',
+        investmentDuration: '',
+        projectedSalePrice: '',
+        purchasePrice: '',
+        region: '',
+        rennovationCost: '',
+        subRegion: '',
     }
 
     if (!values.purchasePrice) {
@@ -69,12 +71,13 @@ export const RealEstateRennovationForm = () => {
         <div>
             <Formik
                 initialValues={{
-                    purchasePrice: '',
-                    rennovationCost: '',
                     closingCost: '',
-                    projectedSalePrice: '',
                     investmentDuration: '',
+                    investorProfitShare: '50',
+                    projectedSalePrice: '',
+                    purchasePrice: '',
                     region: '',
+                    rennovationCost: '',
                     subRegion: '',
                 }}
                 validate={validate}
@@ -85,11 +88,21 @@ export const RealEstateRennovationForm = () => {
                 {props => {
                     const projectedSalePrice = parseInt(props.values.projectedSalePrice)
                     const purchasePrice = parseInt(props.values.purchasePrice)
-                    const returnOnInvestment = (projectedSalePrice - purchasePrice) / purchasePrice
+                    const closingCost = parseInt(props.values.closingCost)
+                    const rennovationCost = parseInt(props.values.rennovationCost)
+                    const amountRequested = purchasePrice + closingCost + rennovationCost
+                    const displayAmountRequested = `$${amountRequested}`
+                    const investorProfitShare = parseInt(props.values.investorProfitShare)
+
+                    const projectedProfit = projectedSalePrice - amountRequested
+                    const returnOnInvestment = projectedProfit / amountRequested * investorProfitShare / 100
+
                     const displayReturnOnInvestment = returnOnInvestment.toLocaleString(undefined, {
                         style: 'percent',
                         minimumFractionDigits: 2,
                     })
+                    const profitToInvestor = projectedProfit * investorProfitShare / 100;
+                    const displayProfitToInvestor = `$${profitToInvestor}`;
 
                     const investmentDuration = parseInt(props.values.investmentDuration)
                     const annualizedReturn =
@@ -100,31 +113,49 @@ export const RealEstateRennovationForm = () => {
                     })
                     return (
                         <Form>
-                            <h1>Summary</h1>
-                            <LabeledField name="region" title="Region" placeholder="United States" />
-                            <LabeledField
-                                name="subRegion"
-                                title="State / Province"
-                                placeholder="Florida"
-                            />
+                            <h1>Real Estate Deal</h1>
+
+                            <h3>Deal Structure</h3>
+                            <LabeledField name="title" title="Title" placeholder="My Real Estate Deal" />
                             <LabeledField name="purchasePrice" title="Purchase Price" />
                             <LabeledField name="closingCost" title="Closing Cost" />
                             <LabeledField name="rennovationCost" title="Rennovation Cost" />
+                            <DisplayField
+                                name="amountRequested"
+                                title="Amount Requested"
+                                value={amountRequested ? displayAmountRequested : "TBD"}
+                            />
+
                             <LabeledField name="projectedSalePrice" title="Projected Sale Price" />
                             <LabeledField
                                 name="investmentDuration"
                                 title="Investment Duration (Months)"
                             />
+                            <LabeledField name="investorProfitShare" title="Investor Profit Share" />
 
+                            <h3>Investor Benefits</h3>
+                            <DisplayField
+                                name="profitToInvestor"
+                                title="Profit"
+                                value={profitToInvestor ? displayProfitToInvestor : "TBD"}
+                            />
                             <DisplayField
                                 name="returnOnInvestment"
-                                title="ROI"
-                                value={displayReturnOnInvestment}
+                                title="Return"
+                                value={returnOnInvestment ? displayReturnOnInvestment : "TBD"}
                             />
                             <DisplayField
                                 name="annualizedReturn"
-                                title="Annualized Return"
-                                value={displayAnnualizedReturn}
+                                title="Return (Annualized)"
+                                value={annualizedReturn ? displayAnnualizedReturn : "TBD"}
+                            />
+
+                            <h3>Additional Information</h3>
+                            <LabeledField name="region" title="Region" placeholder="United States" />
+                            <LabeledField
+                                name="subRegion"
+                                title="State / Province"
+                                placeholder="Florida"
                             />
 
                             <button type="submit">Submit</button>
