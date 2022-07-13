@@ -1,17 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
-class RealEstateRenovationValues {
-    closingCost: string = ''
-    investorProfitShare: string = ''
-    investmentDuration: string = ''
-    projectedSalePrice: string = ''
-    purchasePrice: string = ''
-    region: string = ''
-    rennovationCost: string = ''
-    subRegion: string = ''
-}
-
 const validationSchema = Yup.object().shape({
     closingCost: Yup.number().min(2).required('Required'),
     investorProfitShare: Yup.number().min(50, "Must by at least 50%").max(100, "Cannot be over 100%").required('Required'),
@@ -60,13 +49,13 @@ export const RealEstateRennovationForm = () => {
         <div>
             <Formik
                 initialValues={{
-                    closingCost: '',
-                    investmentDuration: '',
-                    investorProfitShare: '50',
-                    projectedSalePrice: '',
-                    purchasePrice: '',
+                    closingCost: 0,
+                    investmentDuration: 0,
+                    investorProfitShare: 50,
+                    projectedSalePrice: 0,
+                    purchasePrice: 0,
                     region: '',
-                    rennovationCost: '',
+                    rennovationCost: 0,
                     subRegion: '',
                 }}
                 validationSchema={validationSchema}
@@ -75,14 +64,13 @@ export const RealEstateRennovationForm = () => {
                 }}
             >
                 {props => {
-                    const projectedSalePrice = parseInt(props.values.projectedSalePrice)
-                    const purchasePrice = parseInt(props.values.purchasePrice)
-                    const closingCost = parseInt(props.values.closingCost)
-                    const rennovationCost = parseInt(props.values.rennovationCost)
+                    const projectedSalePrice = props.values.projectedSalePrice
+                    const purchasePrice = props.values.purchasePrice
+                    const closingCost = props.values.closingCost
+                    const rennovationCost = props.values.rennovationCost
                     const amountRequested = purchasePrice + closingCost + rennovationCost
                     const displayAmountRequested = `$${amountRequested}`
-                    const investorProfitShare = parseInt(props.values.investorProfitShare)
-
+                    const investorProfitShare = props.values.investorProfitShare
                     const projectedProfit = projectedSalePrice - amountRequested
                     const returnOnInvestment = projectedProfit / amountRequested * investorProfitShare / 100
 
@@ -93,7 +81,7 @@ export const RealEstateRennovationForm = () => {
                     const profitToInvestor = projectedProfit * investorProfitShare / 100;
                     const displayProfitToInvestor = `$${profitToInvestor}`;
 
-                    const investmentDuration = parseInt(props.values.investmentDuration)
+                    const investmentDuration = props.values.investmentDuration
                     const annualizedReturn =
                         (1 + returnOnInvestment) ** (12 / investmentDuration) - 1
                     const displayAnnualizedReturn = annualizedReturn.toLocaleString(undefined, {
