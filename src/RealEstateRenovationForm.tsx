@@ -1,4 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import * as Yup from 'yup'
 
 class RealEstateRenovationValues {
     closingCost: string = ''
@@ -11,28 +12,16 @@ class RealEstateRenovationValues {
     subRegion: string = ''
 }
 
-// A custom validation function. This must return an object
-// which keys are symmetrical to our values/initialValues
-const validate = (values: RealEstateRenovationValues) => {
-    const errors: RealEstateRenovationValues = {
-        closingCost: '',
-        investorProfitShare: '',
-        investmentDuration: '',
-        projectedSalePrice: '',
-        purchasePrice: '',
-        region: '',
-        rennovationCost: '',
-        subRegion: '',
-    }
-
-    if (!values.purchasePrice) {
-        errors.purchasePrice = 'Required'
-    } else if (!/^[0-9]+$/i.test(values.purchasePrice)) {
-        errors.purchasePrice = 'Invalid Purchase Price'
-    }
-
-    return errors
-}
+const validationSchema = Yup.object().shape({
+    closingCost: Yup.number().min(2).required('Required'),
+    investorProfitShare: Yup.number().min(50, "Must by at least 50%").max(100, "Cannot be over 100%").required('Required'),
+    investmentDuration: Yup.number().min(1, "Must be at least 1 month").max(60, "Must be at most 60 months").required('Required'),
+    projectedSalePrice: Yup.number().min(0, "Must be at least 0").required('Required'),
+    purchasePrice: Yup.number().min(0, "Must be at least 0").required('Required'),
+    region: Yup.string().required('Required'),
+    rennovationCost: Yup.number().min(0, "Must be at least 0").required('Required'),
+    subRegion: Yup.string().required('Required'),
+})
 
 interface LabeledFieldProps {
     name: string
@@ -80,7 +69,7 @@ export const RealEstateRennovationForm = () => {
                     rennovationCost: '',
                     subRegion: '',
                 }}
-                validate={validate}
+                validationSchema={validationSchema}
                 onSubmit={values => {
                     alert(JSON.stringify(values, null, 2))
                 }}
