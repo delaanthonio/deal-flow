@@ -113,7 +113,7 @@ export const RealEstateRennovationForm = () => {
                     })
                     return (
                         <Form>
-                            <h1>Real Estate Deal</h1>
+                            <h1>Real Estate Renovation Deal</h1>
 
                             <h3>Deal Structure</h3>
                             <LabeledField name="title" title="Title" placeholder="My Real Estate Deal" />
