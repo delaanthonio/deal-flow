@@ -3,12 +3,18 @@ import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
     closingCost: Yup.number().min(2).required('Required'),
-    investorProfitShare: Yup.number().min(50, "Must by at least 50%").max(100, "Cannot be over 100%").required('Required'),
-    investmentDuration: Yup.number().min(1, "Must be at least 1 month").max(60, "Must be at most 60 months").required('Required'),
-    projectedSalePrice: Yup.number().min(0, "Must be at least 0").required('Required'),
-    purchasePrice: Yup.number().min(0, "Must be at least 0").required('Required'),
+    investorProfitShare: Yup.number()
+        .min(50, 'Must by at least 50%')
+        .max(100, 'Cannot be over 100%')
+        .required('Required'),
+    investmentDuration: Yup.number()
+        .min(1, 'Must be at least 1 month')
+        .max(60, 'Must be at most 60 months')
+        .required('Required'),
+    projectedSalePrice: Yup.number().min(0, 'Must be at least 0').required('Required'),
+    purchasePrice: Yup.number().min(0, 'Must be at least 0').required('Required'),
     region: Yup.string().required('Required'),
-    rennovationCost: Yup.number().min(0, "Must be at least 0").required('Required'),
+    rennovationCost: Yup.number().min(0, 'Must be at least 0').required('Required'),
     subRegion: Yup.string().required('Required'),
 })
 
@@ -72,14 +78,15 @@ export const RealEstateRennovationForm = () => {
                     const displayAmountRequested = `$${amountRequested}`
                     const investorProfitShare = props.values.investorProfitShare
                     const projectedProfit = projectedSalePrice - amountRequested
-                    const returnOnInvestment = projectedProfit / amountRequested * investorProfitShare / 100
+                    const returnOnInvestment =
+                        ((projectedProfit / amountRequested) * investorProfitShare) / 100
 
                     const displayReturnOnInvestment = returnOnInvestment.toLocaleString(undefined, {
                         style: 'percent',
                         minimumFractionDigits: 2,
                     })
-                    const profitToInvestor = projectedProfit * investorProfitShare / 100;
-                    const displayProfitToInvestor = `$${profitToInvestor}`;
+                    const profitToInvestor = (projectedProfit * investorProfitShare) / 100
+                    const displayProfitToInvestor = `$${profitToInvestor}`
 
                     const investmentDuration = props.values.investmentDuration
                     const annualizedReturn =
@@ -93,14 +100,18 @@ export const RealEstateRennovationForm = () => {
                             <h1>Real Estate Renovation Deal</h1>
 
                             <h3>Deal Structure</h3>
-                            <LabeledField name="title" title="Title" placeholder="My Real Estate Deal" />
+                            <LabeledField
+                                name="title"
+                                title="Title"
+                                placeholder="My Real Estate Deal"
+                            />
                             <LabeledField name="purchasePrice" title="Purchase Price" />
                             <LabeledField name="closingCost" title="Closing Cost" />
                             <LabeledField name="rennovationCost" title="Rennovation Cost" />
                             <DisplayField
                                 name="amountRequested"
                                 title="Amount Requested"
-                                value={amountRequested ? displayAmountRequested : "TBD"}
+                                value={amountRequested ? displayAmountRequested : 'TBD'}
                             />
 
                             <LabeledField name="projectedSalePrice" title="Projected Sale Price" />
@@ -114,17 +125,17 @@ export const RealEstateRennovationForm = () => {
                             <DisplayField
                                 name="profitToInvestor"
                                 title="Profit"
-                                value={profitToInvestor ? displayProfitToInvestor : "$0"}
+                                value={profitToInvestor ? displayProfitToInvestor : '$0'}
                             />
                             <DisplayField
                                 name="returnOnInvestment"
                                 title="Return"
-                                value={returnOnInvestment ? displayReturnOnInvestment : "0%"}
+                                value={returnOnInvestment ? displayReturnOnInvestment : '0%'}
                             />
                             <DisplayField
                                 name="annualizedReturn"
-                                title="Return (Annualized)"
-                                value={annualizedReturn ? displayAnnualizedReturn : "0%"}
+                                title="Annualized Return"
+                                value={annualizedReturn ? displayAnnualizedReturn : '0%'}
                             />
 
                             <h3>Additional Information</h3>
