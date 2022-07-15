@@ -1,14 +1,13 @@
 .App {
   text-align: left;
-  background-color: aliceblue;
+  background-color: rgb(244, 244, 244);
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  align-items: center;
   justify-content: center;
-}
-
-label {
-  padding-right: 5px;
-  padding-left: 5px;
 }
 
 .App-logo {
@@ -23,18 +22,16 @@ label {
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(30px + 2vmin);
 }
 
 .App-link {
-  color: #61dafb;
+  color: #b4c0c3;
 }
 
 @keyframes App-logo-spin {
@@ -54,9 +51,58 @@ input {
   margin-top: 0.5rem;
 }
 
-p {
-  margin: 0;
-  margin-bottom: 0.25;
-  font-size: 0.5rem;
-  color: red;
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+  background: 25px 30px;
+  border-radius: 5px;
+}
+
+.input-field {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.deal-form {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  max-width: 600px;
+}
+
+.deal-form-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+input {
+  height: 40px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid #aaa;
+  color: #aaa;
+  padding-left: 10px;
+}
+
+.input-field {
+  width: calc(50% - 20px);
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+button {
+  border-radius: 5px;
+  border: 2px solid #aaa;
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
 }

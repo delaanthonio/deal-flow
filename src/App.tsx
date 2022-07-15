@@ -1,6 +1,5 @@
-import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import logo from './logo.svg'
 import {RealEstateRennovationForm} from './RealEstateRenovationForm'
 
 function reactApp() {
@@ -27,8 +26,10 @@ function reactApp() {
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
-      <RealEstateRennovationForm />
+      <header className="App-header">Deal Flow</header>
+      <div className="container">
+        <RealEstateRennovationForm />
+      </div>
     </div>
   )
 }
