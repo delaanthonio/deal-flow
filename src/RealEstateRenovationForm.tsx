@@ -57,13 +57,13 @@ export const RealEstateRennovationForm = () => {
     <div>
       <Formik
         initialValues={{
-          closingCost: '0',
-          investmentDuration: '0',
+          closingCost: '',
+          investmentDuration: '',
           investorProfitShare: '50',
-          projectedSalePrice: '0',
-          purchasePrice: '0',
+          projectedSalePrice: '',
+          purchasePrice: '',
           region: '',
-          renovationCost: '0',
+          renovationCost: '',
           subRegion: '',
         }}
         validationSchema={validationSchema}
@@ -72,22 +72,30 @@ export const RealEstateRennovationForm = () => {
         }}
       >
         {props => {
-          const projectedSalePrice = parseInt(props.values.projectedSalePrice)
-          const purchasePrice = parseInt(props.values.purchasePrice)
-          const closingCost = parseInt(props.values.closingCost)
-          const rennovationCost = parseInt(props.values.renovationCost)
+          const projectedSalePrice = parseInt(props.values.projectedSalePrice) || 0
+          const purchasePrice = parseInt(props.values.purchasePrice) || 0
+          const closingCost = parseInt(props.values.closingCost) || 0
+          const rennovationCost = parseInt(props.values.renovationCost) || 0
           const amountRequested = purchasePrice + rennovationCost
           const displayAmountRequested = `$${amountRequested}`
           const investorProfitShare = parseInt(props.values.investorProfitShare)
-          const projectedProfit = projectedSalePrice - amountRequested - closingCost
-          const returnOnInvestment =
-            ((projectedProfit / amountRequested) * investorProfitShare) / 100
+          const projectedProfit = Math.max(
+            projectedSalePrice - amountRequested - closingCost,
+            0,
+          )
+          const returnOnInvestment = Math.max(
+            ((projectedProfit / amountRequested) * investorProfitShare) / 100,
+            0,
+          )
 
           const displayReturnOnInvestment = returnOnInvestment.toLocaleString(undefined, {
             style: 'percent',
             minimumFractionDigits: 0,
           })
-          const profitToInvestor = (projectedProfit * investorProfitShare) / 100
+          const profitToInvestor = Math.max(
+            (projectedProfit * investorProfitShare) / 100,
+            0,
+          )
           const displayProfitToInvestor = `$${profitToInvestor}`
 
           const investmentDuration = parseInt(props.values.investmentDuration)
