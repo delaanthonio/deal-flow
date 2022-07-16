@@ -45,10 +45,8 @@ const LabeledField = (props: LabeledFieldProps) => {
 const DisplayField = (props: DisplayFieldProps) => {
   return (
     <div className="input-field">
-      <label className="field-title" htmlFor={props.name}>
-        {props.title}
-      </label>
-      {props.value}
+      <label className="field-title">{props.title}</label>
+      <span className="display-value"> {props.value}</span>
       <ErrorMessage name={props.name} />
     </div>
   )
@@ -113,11 +111,6 @@ export const RealEstateRennovationForm = () => {
                 <LabeledField name="purchasePrice" title="Purchase Price" />
                 <LabeledField name="closingCost" title="Closing Cost" />
                 <LabeledField name="rennovationCost" title="Rennovation Cost" />
-                <DisplayField
-                  name="amountRequested"
-                  title="Amount Requested"
-                  value={amountRequested ? displayAmountRequested : 'TBD'}
-                />
 
                 <LabeledField name="projectedSalePrice" title="Projected Sale Price" />
                 <LabeledField
@@ -127,8 +120,13 @@ export const RealEstateRennovationForm = () => {
                 <LabeledField name="investorProfitShare" title="Investor Profit Share" />
               </div>
 
-              <h3>Investor Returns</h3>
+              <h3>Deal Summary</h3>
               <div className="deal-form-">
+                <DisplayField
+                  name="amountRequested"
+                  title="Amount Requested"
+                  value={amountRequested ? displayAmountRequested : 'TBD'}
+                />
                 <DisplayField
                   name="profitToInvestor"
                   title="Profit"
@@ -156,9 +154,9 @@ export const RealEstateRennovationForm = () => {
                 />
               </div>
 
-              <div className="input-field">
-                <button type="submit">Submit</button>
-              </div>
+              <button type="submit" disabled={props.isSubmitting}>
+                Submit
+              </button>
             </Form>
           )
         }}

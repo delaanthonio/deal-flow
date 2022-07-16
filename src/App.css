@@ -72,14 +72,16 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 60px;
-  max-width: 600px;
+  padding: 40px;
+  max-width: 700px;
 }
 
 .deal-form-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
+  max-width: 595px;
 }
 
 input {
@@ -88,21 +90,39 @@ input {
   font-weight: 500;
   font-size: 16px;
   border-radius: 5px;
-  border: 2px solid #aaa;
-  color: #aaa;
-  padding-left: 10px;
+  border: 1.5px solid #b8b8b8;
+  color: #b8b8b8;
+  padding: 0 10px;
 }
 
 .input-field {
-  width: calc(50% - 20px);
   margin-bottom: 10px;
   font-size: 18px;
+  width: calc(100% / 2 - 25px);
 }
 
 button {
   border-radius: 5px;
-  border: 2px solid #aaa;
+  border: 0px solid #6180d8;
   height: 40px;
   width: 100%;
-  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 10px 0px;
+  background-color: #6c8ff1;
+  color: white;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 25px;
 }
