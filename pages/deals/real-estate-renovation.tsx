@@ -1,5 +1,6 @@
 import {ErrorMessage, Field, Form, Formik} from 'formik'
 import * as Yup from 'yup'
+import styles from '../../styles/Form.module.css'
 
 const validationSchema = Yup.object().shape({
   closingCost: Yup.number().min(2).required('Required'),
@@ -32,7 +33,7 @@ interface DisplayFieldProps {
 
 const LabeledField = (props: LabeledFieldProps) => {
   return (
-    <div className="input-field">
+    <div className={styles.input_field}>
       <label className="field-title" htmlFor={props.name}>
         {props.title}
       </label>
@@ -44,7 +45,7 @@ const LabeledField = (props: LabeledFieldProps) => {
 
 const DisplayField = (props: DisplayFieldProps) => {
   return (
-    <div className="input-field">
+    <div className={styles.input_field}>
       <label className="field-title">{props.title}</label>
       <span className="display-value"> {props.value}</span>
       <ErrorMessage name={props.name} />
@@ -52,7 +53,7 @@ const DisplayField = (props: DisplayFieldProps) => {
   )
 }
 
-export const RealEstateRennovationForm = () => {
+export const RealEstateRennovation = () => {
   return (
     <div>
       <Formik
@@ -106,11 +107,11 @@ export const RealEstateRennovationForm = () => {
             minimumFractionDigits: 0,
           })
           return (
-            <Form className="deal-form">
+            <Form className={styles.deal_form}>
               <h1>Real Estate Renovation Deal</h1>
 
-              <h3 className="section-header">Deal Structure</h3>
-              <div className="deal-form-section">
+              <h3 className={styles.section_header}>Deal Structure</h3>
+              <div className={styles.deal_form_section}>
                 <LabeledField
                   name="title"
                   title="Title"
@@ -128,8 +129,8 @@ export const RealEstateRennovationForm = () => {
                 <LabeledField name="investorProfitShare" title="Investor Profit Share" />
               </div>
 
-              <h3 className="section-header">Deal Summary</h3>
-              <div className="deal-form-section">
+              <h3 className={styles.section_header}>Deal Summary</h3>
+              <div className={styles.deal_form_section}>
                 <DisplayField
                   name="amountRequested"
                   title="Amount Requested"
@@ -152,8 +153,8 @@ export const RealEstateRennovationForm = () => {
                 />
               </div>
 
-              <h3 className="section-header">Additional Information</h3>
-              <div className="deal-form-section">
+              <h3 className={styles.section_header}>Additional Information</h3>
+              <div className={styles.deal_form_section}>
                 <LabeledField name="region" title="Country" placeholder="United States" />
                 <LabeledField
                   name="subRegion"
@@ -172,3 +173,5 @@ export const RealEstateRennovationForm = () => {
     </div>
   )
 }
+
+export default RealEstateRennovation

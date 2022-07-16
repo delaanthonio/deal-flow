@@ -19,10 +19,6 @@
   font-size: calc(30px + 2vmin);
 }
 
-.input {
-  text-align: left;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -33,7 +29,7 @@
   border-radius: 5px;
 }
 
-.input-field {
+.input_field {
   font-weight: 500;
   margin: 8px 0px;
   padding: 0 10;
@@ -44,7 +40,7 @@
   width: calc(100% / 2 - 35px);
 }
 
-.deal-form {
+.deal_form {
   background-color: white;
   border-radius: 5px;
   display: flex;
@@ -54,59 +50,13 @@
   max-width: 700px;
 }
 
-.deal-form-section {
+.deal_form_section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
 
-input {
-  margin-top: 0.5rem;
-  height: 40px;
-  width: calc(100% - 23px);
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1.5px solid #aaa;
+.section_header {
   color: #777;
-  padding: 0 10px;
-}
-
-label {
-  width: 100%;
-}
-
-button {
-  border-radius: 5px;
-  border: 0px solid #6180d8;
-  height: 40px;
-  width: 100%;
-  font-weight: 500;
-  font-size: 16px;
-  margin: 10px 0px;
-  background-color: #6c8ff1;
-  color: white;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 500;
-}
-
-h1 {
-  font-size: 30px;
-}
-
-h3 {
-  font-size: 20px;
-}
-
-.section-header {
-  color: #777;
-}
-
-.form-display-field {
-  margin: 0px 10px;
 }
