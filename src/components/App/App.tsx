@@ -1,5 +1,5 @@
+import {RealEstateRennovationForm} from '../RealEstateRenovationForm/RealEstateRenovationForm'
 import './App.css'
-import {RealEstateRennovationForm} from './RealEstateRenovationForm'
 
 function App() {
   return (
