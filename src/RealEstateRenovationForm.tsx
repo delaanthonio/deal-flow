@@ -76,10 +76,10 @@ export const RealEstateRennovationForm = () => {
           const purchasePrice = props.values.purchasePrice
           const closingCost = props.values.closingCost
           const rennovationCost = props.values.rennovationCost
-          const amountRequested = purchasePrice + closingCost + rennovationCost
+          const amountRequested = purchasePrice + rennovationCost
           const displayAmountRequested = `$${amountRequested}`
           const investorProfitShare = props.values.investorProfitShare
-          const projectedProfit = projectedSalePrice - amountRequested
+          const projectedProfit = projectedSalePrice - amountRequested - closingCost
           const returnOnInvestment =
             ((projectedProfit / amountRequested) * investorProfitShare) / 100
 
