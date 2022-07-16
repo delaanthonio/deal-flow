@@ -10,17 +10,6 @@
   justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   min-height: 10vh;
   display: flex;
@@ -32,10 +21,6 @@
 
 .input {
   text-align: left;
-}
-
-input {
-  margin-top: 0.5rem;
 }
 
 .container {
@@ -50,7 +35,13 @@ input {
 
 .input-field {
   font-weight: 500;
-  margin-bottom: 5px;
+  margin: 8px 0px;
+  padding: 0 10;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 18px;
+  width: calc(100% / 2 - 35px);
 }
 
 .deal-form {
@@ -68,24 +59,22 @@ input {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  max-width: 595px;
 }
 
 input {
+  margin-top: 0.5rem;
   height: 40px;
-  width: 100%;
+  width: calc(100% - 23px);
   font-weight: 500;
   font-size: 16px;
   border-radius: 5px;
-  border: 1.5px solid #b8b8b8;
-  color: #b8b8b8;
+  border: 1.5px solid #aaa;
+  color: #777;
   padding: 0 10px;
 }
 
-.input-field {
-  margin-bottom: 10px;
-  font-size: 18px;
-  width: calc(100% / 2 - 25px);
+label {
+  width: 100%;
 }
 
 button {
@@ -111,5 +100,13 @@ h1 {
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 20px;
+}
+
+.section-header {
+  color: #777;
+}
+
+.form-display-field {
+  margin: 0px 10px;
 }

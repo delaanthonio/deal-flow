@@ -85,7 +85,7 @@ export const RealEstateRennovationForm = () => {
 
           const displayReturnOnInvestment = returnOnInvestment.toLocaleString(undefined, {
             style: 'percent',
-            minimumFractionDigits: 2,
+            minimumFractionDigits: 0,
           })
           const profitToInvestor = (projectedProfit * investorProfitShare) / 100
           const displayProfitToInvestor = `$${profitToInvestor}`
@@ -95,13 +95,13 @@ export const RealEstateRennovationForm = () => {
             (1 + returnOnInvestment) ** (12 / investmentDuration) - 1
           const displayAnnualizedReturn = annualizedReturn.toLocaleString(undefined, {
             style: 'percent',
-            minimumFractionDigits: 2,
+            minimumFractionDigits: 0,
           })
           return (
             <Form className="deal-form">
               <h1>Real Estate Renovation Deal</h1>
 
-              <h3>Deal Structure</h3>
+              <h3 className="section-header">Deal Structure</h3>
               <div className="deal-form-section">
                 <LabeledField
                   name="title"
@@ -110,7 +110,7 @@ export const RealEstateRennovationForm = () => {
                 />
                 <LabeledField name="purchasePrice" title="Purchase Price" />
                 <LabeledField name="closingCost" title="Closing Cost" />
-                <LabeledField name="rennovationCost" title="Rennovation Cost" />
+                <LabeledField name="renovationCost" title="Renovation Cost" />
 
                 <LabeledField name="projectedSalePrice" title="Projected Sale Price" />
                 <LabeledField
@@ -120,17 +120,17 @@ export const RealEstateRennovationForm = () => {
                 <LabeledField name="investorProfitShare" title="Investor Profit Share" />
               </div>
 
-              <h3>Deal Summary</h3>
-              <div className="deal-form-">
+              <h3 className="section-header">Deal Summary</h3>
+              <div className="deal-form-section">
                 <DisplayField
                   name="amountRequested"
                   title="Amount Requested"
-                  value={amountRequested ? displayAmountRequested : 'TBD'}
+                  value={displayAmountRequested}
                 />
                 <DisplayField
                   name="profitToInvestor"
                   title="Profit"
-                  value={profitToInvestor ? displayProfitToInvestor : '$0'}
+                  value={displayProfitToInvestor}
                 />
                 <DisplayField
                   name="returnOnInvestment"
@@ -144,7 +144,7 @@ export const RealEstateRennovationForm = () => {
                 />
               </div>
 
-              <h3>Additional Information</h3>
+              <h3 className="section-header">Additional Information</h3>
               <div className="deal-form-section">
                 <LabeledField name="region" title="Country" placeholder="United States" />
                 <LabeledField
