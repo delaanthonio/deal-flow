@@ -57,13 +57,13 @@ export const RealEstateRennovationForm = () => {
     <div>
       <Formik
         initialValues={{
-          closingCost: 0,
-          investmentDuration: 0,
-          investorProfitShare: 50,
-          projectedSalePrice: 0,
-          purchasePrice: 0,
+          closingCost: '0',
+          investmentDuration: '0',
+          investorProfitShare: '50',
+          projectedSalePrice: '0',
+          purchasePrice: '0',
           region: '',
-          rennovationCost: 0,
+          renovationCost: '0',
           subRegion: '',
         }}
         validationSchema={validationSchema}
@@ -72,13 +72,13 @@ export const RealEstateRennovationForm = () => {
         }}
       >
         {props => {
-          const projectedSalePrice = props.values.projectedSalePrice
-          const purchasePrice = props.values.purchasePrice
-          const closingCost = props.values.closingCost
-          const rennovationCost = props.values.rennovationCost
+          const projectedSalePrice = parseInt(props.values.projectedSalePrice)
+          const purchasePrice = parseInt(props.values.purchasePrice)
+          const closingCost = parseInt(props.values.closingCost)
+          const rennovationCost = parseInt(props.values.renovationCost)
           const amountRequested = purchasePrice + rennovationCost
           const displayAmountRequested = `$${amountRequested}`
-          const investorProfitShare = props.values.investorProfitShare
+          const investorProfitShare = parseInt(props.values.investorProfitShare)
           const projectedProfit = projectedSalePrice - amountRequested - closingCost
           const returnOnInvestment =
             ((projectedProfit / amountRequested) * investorProfitShare) / 100
@@ -90,7 +90,7 @@ export const RealEstateRennovationForm = () => {
           const profitToInvestor = (projectedProfit * investorProfitShare) / 100
           const displayProfitToInvestor = `$${profitToInvestor}`
 
-          const investmentDuration = props.values.investmentDuration
+          const investmentDuration = parseInt(props.values.investmentDuration)
           const annualizedReturn =
             (1 + returnOnInvestment) ** (12 / investmentDuration) - 1
           const displayAnnualizedReturn = annualizedReturn.toLocaleString(undefined, {
