@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:13.6
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: dealflow
+      POSTGRES_USER: deal-flow-user
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
