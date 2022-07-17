@@ -23,7 +23,7 @@ a {
 input {
   margin-top: 0.5rem;
   height: 40px;
-  width: calc(100% - 23px);
+  width: 100%;
   font-weight: 500;
   font-size: 16px;
   border-radius: 5px;

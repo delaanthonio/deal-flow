@@ -110,7 +110,7 @@ export const RealEstateRennovation = () => {
             <Form className={styles.deal_form}>
               <h1>Real Estate Renovation Deal</h1>
 
-              <h3 className={styles.section_header}>Deal Structure</h3>
+              <h3 className={styles.section_header}>Deal Details</h3>
               <div className={styles.deal_form_section}>
                 <LabeledField
                   name="title"
